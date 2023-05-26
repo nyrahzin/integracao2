@@ -19,7 +19,8 @@ public class App {
         System.out.println("1- Inserir");
         System.out.println("2- Listar todos");
         System.out.println("3- Listar por id");
-        System.out.println("4- Sair");
+        System.out.println("4- excluir por id");
+        System.out.println("5-Sair");
         System.out.print("Digite: ");
         return teclado.nextInt();
     }
@@ -50,6 +51,20 @@ public class App {
         }else{
             System.out.println("There is not registro");
         }
+    }
+
+    public static void metodoExcluir() {
+        String tmp = leString("Digite o id para excluir: ");
+        int id = Integer.parseInt(tmp); //converte string pra int
+        PessoaDAO dao = new PessoaDAO();
+        if (dao.excluir(id)){
+            JOptionPane.showMessageDialog(null, "Registro "+ id + " excluido");
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Registro não encontrado");
+        }
+        
+        
     }
     
     /**
@@ -88,12 +103,15 @@ public class App {
                     JOptionPane.showMessageDialog(null, new JTextArea(saida));
                     break;
                 case 4:
+                    metodoExcluir();
+                    break;
+                case 5:
                     System.out.println("Saindo");
                     break;
                 default:
                     System.out.println("Opcao invalida");
             }
-        }while(op!=4);
+        }while(op!=5);
     //     List<Pessoa> listaPessoas = pessoaDAO.consultarTodos();
     //     System.out.println(listaPessoas.isEmpty());
     //     System.out.println(listaPessoas);

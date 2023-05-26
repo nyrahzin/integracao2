@@ -78,5 +78,19 @@ public class PessoaDAO {
         }
         return lista;
     }
+    public boolean excluir (int chave) {
+        String sql = "DELETE FROM pessoa WHERE id = ?";
+        try {
+            ConectaBD conexao = new ConectaBD();
+            PreparedStatement pst = conexao.getConexao().prepareStatement(sql);
+            pst.setInt(1, chave);
+            pst.execute();
+            return pst.getUpdateCount()>0;
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
 
 }
